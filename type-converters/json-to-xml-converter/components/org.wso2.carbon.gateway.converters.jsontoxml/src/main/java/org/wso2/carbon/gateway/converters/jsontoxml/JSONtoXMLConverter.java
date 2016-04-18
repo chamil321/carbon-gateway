@@ -77,11 +77,13 @@ public class JSONtoXMLConverter implements TypeConverter {
         return new ByteArrayInputStream(xml);
     }
 
-    @Override public String getSourceType() {
+    @Override
+    public String getSourceType() {
         return MIMEType.JSON;
     }
 
-    @Override public String getTargetType() {
+    @Override
+    public String getTargetType() {
         return MIMEType.XML;
     }
 

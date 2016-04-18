@@ -23,6 +23,7 @@ package org.wso2.carbon.gateway.core.flow.contentaware.abstractcontext;
  * Registry for type converters.
  */
 public interface TypeConverterRegistry {
+
     /**
      * Registers a new type converter.
      * <p>
@@ -50,5 +51,4 @@ public interface TypeConverterRegistry {
      * @return the type converter or <tt>null</tt> if not found.
      */
     TypeConverter getTypeConverter(String toType, String fromType);
-
 }

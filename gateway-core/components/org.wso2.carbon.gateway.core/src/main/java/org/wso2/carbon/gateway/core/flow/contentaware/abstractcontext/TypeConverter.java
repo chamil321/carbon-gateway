@@ -40,5 +40,4 @@ public interface TypeConverter {
     String getSourceType();
 
     String getTargetType();
-
 }

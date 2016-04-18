@@ -24,7 +24,6 @@ import org.wso2.carbon.gateway.core.flow.contentaware.abstractcontext.TypeConver
 import org.wso2.carbon.gateway.core.flow.contentaware.abstractcontext.TypeConverterRegistry;
 
 import java.util.HashMap;
-
 import java.util.Map;
 
 /**
@@ -38,8 +37,7 @@ public class BaseTypeConverterRegistry implements TypeConverterRegistry {
 
     protected final Map<TypeMapper, TypeConverter> typeConverters = new HashMap<>();
 
-    private BaseTypeConverterRegistry() {
-    }
+    private BaseTypeConverterRegistry() {}
 
     public static BaseTypeConverterRegistry getInstance() {
         return instance;
@@ -69,6 +67,5 @@ public class BaseTypeConverterRegistry implements TypeConverterRegistry {
     public TypeConverter getTypeConverter(String targetType, String sourceType) {
         return typeConverters.get(new TypeMapper(targetType, sourceType));
     }
-
 }
 
