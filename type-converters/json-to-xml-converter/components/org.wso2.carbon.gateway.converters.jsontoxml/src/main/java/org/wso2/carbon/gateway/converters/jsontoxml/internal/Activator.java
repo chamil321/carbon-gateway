@@ -31,16 +31,14 @@ import org.wso2.carbon.gateway.core.flow.contentaware.abstractcontext.TypeConver
 public class Activator implements BundleActivator {
     private static final Logger log = LoggerFactory.getLogger(Activator.class);
 
-    @Override
-    public void start(BundleContext bundleContext) throws Exception {
+    @Override public void start(BundleContext bundleContext) throws Exception {
         if (log.isDebugEnabled()) {
             log.debug("Activating JSONtoXMLConverter TypeConverter");
         }
         bundleContext.registerService(TypeConverter.class, new JSONtoXMLConverter(), null);
     }
 
-    @Override
-    public void stop(BundleContext bundleContext) throws Exception {
+    @Override public void stop(BundleContext bundleContext) throws Exception {
 
     }
 }

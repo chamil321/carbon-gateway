@@ -48,8 +48,7 @@ import javax.xml.transform.stax.StAXSource;
  */
 public class XMLtoJSONTypeConverter implements TypeConverter {
 
-    @Override
-    public InputStream convert(InputStream inputStream) throws TypeConversionException, IOException {
+    @Override public InputStream convert(InputStream inputStream) throws TypeConversionException, IOException {
         Logger log = LoggerFactory.getLogger(XMLtoJSONTypeConverter.class);
         InputStream input = inputStream;
         InputStream results = null;
@@ -84,10 +83,6 @@ public class XMLtoJSONTypeConverter implements TypeConverter {
         }
 
         return results;
-    }
-
-    @Override public <T> T convert(Object anyValue) throws TypeConversionException {
-        return null;
     }
 
     @Override public String getSourceType() {

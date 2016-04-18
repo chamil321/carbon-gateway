@@ -71,6 +71,17 @@ public class ConversionManager {
 
         try {
             processedStream = converter.convert(inputStream);
+            Scanner s = new java.util.Scanner(processedStream).useDelimiter("\\A");
+            while (s.hasNext()) {
+                buf.append(s.next());
+            }
+            String outputString = buf.toString();
+            log.info(sourceType + " to " + targetType + " type conversion\n" + outputString);
+            ByteBuffer outputByteBuffer = ByteBuffer.wrap(String.valueOf(buf).getBytes());
+            cMsg.setHeader("Content-Type", targetType);
+            cMsg.addMessageBody(outputByteBuffer);
+            cMsg.setEndOfMsgAdded(true);
+
         } catch (TypeConversionException e) {
             log.error("Error in converting from: " + sourceType + " to: " + targetType);
         } catch (IOException e) {
@@ -78,15 +89,7 @@ public class ConversionManager {
         } finally {
             //TODO: do we need to close the input stream here ?
         }
-        Scanner s = new java.util.Scanner(processedStream).useDelimiter("\\A");
-        while (s.hasNext()) {
-            buf.append(s.next());
-        }
-        String outputString = buf.toString();
-        log.info(sourceType + " to " + targetType + " type conversion\n" + outputString);
-        ByteBuffer outputByteBuffer = ByteBuffer.wrap(String.valueOf(buf).getBytes());
-        cMsg.setHeader("Content-Type", targetType);
-        cMsg.addMessageBody(outputByteBuffer);
+
         return cMsg;
 
     }
@@ -94,6 +97,10 @@ public class ConversionManager {
     private BlockingQueue<ByteBuffer> aggregateContent(CarbonMessage msg) {
 
         try {
+            /*//Check whether the message is fully read
+            while (!msg.isEndOfMsgAdded()) {
+                Thread.sleep(10);
+            }*/
             //Get a clone of content chunk queue from the pipe
             BlockingQueue<ByteBuffer> clonedContent = new LinkedBlockingQueue<>(msg.getFullMessageBody());
             return clonedContent;

@@ -31,6 +31,7 @@ public class TypeMapper {
         this.fromType = fromType;
     }
 
+    @Override
     public boolean equals(Object object) {
         if (object instanceof TypeMapper) {
             TypeMapper typeMapper = (TypeMapper) object;
@@ -40,6 +41,7 @@ public class TypeMapper {
         return false;
     }
 
+    @Override
     public int hashCode() {
         int answer = 0;
         if (toType != null && fromType != null) {
